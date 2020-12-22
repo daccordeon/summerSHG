@@ -1,0 +1,43 @@
+# Analyzer Details
+deviceName:     SR785
+ipAddress:      vanna     ## Ip or hostname of GPIB Device
+gpibAddress:    10        ## port of GPIB device (10) is default
+
+# Output Parameters
+saveDir:        ./        ## Path where output is saved, use [./] for current dir
+nameRoot:       TFSR785   ## Filename root for output files
+plotResult:     True      ## Whether to plot measured data when finished [True/False]
+plotRefs:       False     ## Whether to plot references with same nameRoot [True/False]
+refDir:         ./        ## Where the reference trace files are stored
+saveFig:        False     ## If plotResult is true, saves a pdf with same filename [True/False]
+plotTitle:      SR785 TF Measurement
+
+# Measurement Parameters
+measType:       TF
+startFreq:      100kHz    ## Start frequency [102.4kHz] Maximum
+stopFreq:       100Hz     ## Stop frequency
+numOfPoints:    300       ## Sweep points
+sweepType:      Log       ## Sweep type: [Log] or [Linear]
+excAmp:         15mV      ## Excitation amplitude
+excOff:         0mV       ## Excitation offset
+integrate:      Cycles    ## At each point, use cycle or time settings [Cycles/Time]
+settleTime:     0.2       ## Settle time
+intTime:        1         ## Integration Time
+settleCycles:   1         ## Settle cycles
+intCycles:      5         ## Integration cycles
+
+# Analyzer Settings
+arMode:         UpOnly    ## Auto range mode CH1: [UpOnly] or [Tracking]
+arMode2:        UpOnly    ## Auto range mode CH2: [UpOnly] or [Tracking] (optional)
+autoRange1:     ON        ## Auto range On/Off CH1: [ON] or [OFF] (optional)
+autoRange2:     ON        ## Auto range On/Off CH2: [ON] or [OFF] (optional)
+dataMode:       dBDeg     ## Data format, [dBDeg], [MagDeg] or [ReIm]
+onlyMag:        False     ## Only measure magnitude of TF [True/False] (optional)
+avgMode:        RMS       ## Averaging mode: [None], [Vector], [RMS] or [PeakHold]
+inputCoupling1: AC        ## CH1 input coupling. [DC] or [AC]
+inputDiff1:     A         ## CH1 input Differential [A-B], or single ended [A]
+inputCoupling2: AC        ## CH2 input coupling. [DC] or [AC]
+inputDiff2:     A         ## CH2 input Differential [A-B], or single ended [A]
+inputGND1:      Float     ## CH1 input grounding. [Float] or [Ground]
+inputGND2:      Float     ## CH2 input grounding. [Float] or [Ground]
+baseFreq:       102.4kHz  ## Base Freq [102.4kHz] or [100.0kHz]

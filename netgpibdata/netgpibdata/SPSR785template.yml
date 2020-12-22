@@ -1,0 +1,83 @@
+# Analyzer Details
+deviceName:    SR785
+ipAddress:     vanna     ## Ip or hostname of GPIB Device
+gpibAddress:   10        ## port of GPIB device (10) is default
+
+# Output Parameters
+saveDir:        ./        ## Path where output is saved, use [./] for current dir
+nameRoot:       SPSR785   ## Filename root for output files
+plotResult:     True      ## Whether to plot measured data when finished [True/False]
+plotRefs:       False     ## Whether to plot references with same nameRoot [True/False]
+refDir:         ./        ## Where the reference trace files are stored
+plotScales:     Log,Log   ## Scaling of x and y axes, respectively. [Linear,Log],[Log,Log], etc.
+saveFig:        False     ## If plotResult is true, saves a pdf with same filename [True/False]
+plotTitle:      SR785 Spectrum Measurement
+
+# Measurement Parameters
+measType:       Spectrum
+spanFreq:       102.4kHz  ## Frequency span has only select values avalible
+                          ## Consult the manual or SR785 options menu
+startFreq:      0Hz       ## Start frequency, [102.4kHz] Max
+numOfPoints:    800       ## FFT lines: [100], [200], [400] or [800]
+numAvg:         25        ## Number of averages
+
+# Analyzer Settings
+arMode:         UpOnly    ## Auto range mode CH1: [UpOnly] or [Tracking]
+dataMode:       Vrms/rtHz ## [dbVrms/rtHz] or [Vrms/rtHz]
+dualChannel:    Dual      ## [Single/Dual] Channel mode
+avgMode:        RMS       ## Averaging mode: [None], [Vector], [RMS] or [PeakHold]
+inputCoupling1: AC        ## CH1 input coupling. [DC] or [AC]
+inputDiff1:     A         ## CH1 input Differential [A-B], or single ended [A]
+inputCoupling2: AC        ## CH2 input coupling. [DC] or [AC]
+inputDiff2:     A         ## CH2 input Differential [A-B], or single ended [A]
+inputGND1:      Float     ## CH1 input grounding. [Float] or [Ground]
+inputGND2:      Float     ## CH2 input grounding. [Float] or [Ground]
+baseFreq:       102.4kHz  ## Base Freq [102.4kHz] or [100.0kHz]
+windowFunc:     Hanning   ## Window function: [Uniform], [Flattop], [Hanning], [BMH], [Kaiser],
+                          ## [Force/Exponential], [User], [-T/2,T/2],[0,T/2] or [-T/4,T/4]
+
+# Optional Analyzer Settings
+# arMode2:        UpOnly    ## Auto range mode CH2: [UpOnly] or [Tracking]
+                            ## Default: Same as arMode
+# autoRange1:     ON        ## Auto range On/Off CH1: [ON] or [OFF]
+                            ## Default: ON
+# autoRange2:     ON        ## Auto range On/Off CH2: [ON] or [OFF]
+                            ## Default: ON
+# inputRange1:    10dBVpk   ## Input range of CH1 in dBVpk, dBVrms, dBVpp, Vpk,
+                            ## Vrms, dBEUpk, dBEUrms, dBEUpp, EUpk, EUrms, or
+                            ## EUpp. Works only if autoRange1 is set to OFF
+                            ## Default: Whatever was set previously or set by
+                            ##          auto ranging.
+# inputRange2:    10dBVpk   ## Input range of CH2 in dBVpk, dBVrms, dBVpp, Vpk,
+                            ## Vrms, dBEUpk, dBEUrms, dBEUpp, EUpk, EUrms, or
+                            ## EUpp. Works only if autoRange1 is set to OFF
+                            ## Default: Whatever was set previously or set by
+                            ##          auto ranging.
+
+# Optional Source setting for FFT
+
+# For using sine single tone or two tone
+# source:         Sine      ## Choosing sine source. Case insensitive
+# sourceAmp:      100mV     ## (Required) Sine source amplitude
+# sourceFreq:     50kHz     ## (Required) Sine source frequency
+# sourceOffset:   0V        ## (Optional) DC Offset
+# Add following together to make a two tone
+# sourceAmp2:     100mV     ## (Optional) Sine source amplitude of second tone
+# sourceFreq2:    50kHz     ## (Optional) Sine source frequency of seconf tone
+
+# For using chirp source
+# source:         Chirp     ## Choosing chirp source. Case insensitive
+# sourceAmp:      100mV     ## (Required) Sine source amplitude
+# sourceBurst:    100       ## (Optional) Chirp Burst Percentage of FFT time.
+# sourceDisp:     0         ## (Optional) Source display ID 0:A, 1:B.
+
+# For using noise source
+# source:         Noise     ## Choosing noise source. Case insensitive
+# sourceType:     White     ## (Required) Can be either (case insensitive):
+                            ## bandlimitedWhite: White in FFT frequency span
+                            ## White: White Broadband over 102.4 kHz.
+                            ## Pink: Pink noise rolls off at 3 dB/oct.
+# sourceAmp:      100mV     ## (Required) Sine source amplitude
+# sourceBurst:    100       ## (Optional) Noise Burst Percentage of FFT time.
+# sourceBurstPeriod:1s      ## (Optional) Noise Burst Source Period (4ms - 1ks)
+# sourceDisp:     0         ## (Optional) Source display ID 0:A, 1:B.

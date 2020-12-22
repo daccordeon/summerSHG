@@ -1,0 +1,35 @@
+# Analyzer Details
+deviceName:   AG4395A
+ipAddress:    vanna     ## IP or hostname of GPIB Device
+gpibAddress:  10        ## Port of GPIB device, 10 is default
+
+# Output Parameters
+saveDir:      ./        ## Path where output is saved, use [./] for current dir
+nameRoot:     TFAG4395A ## Filename root for output files
+plotResult:   True      ## Whether to plot measured data when finished [True/False]
+plotRefs:     False     ## Whether to plot references with same nameRoot [True/False]
+refDir:       ./        ## Where the reference trace files are stored
+saveFig:      False     ## If plotResult is true, saves a pdf with same filename [True/False]
+plotTitle:    AG4395A TF Measurement
+
+# Measurement Parameters
+measType:     TF
+startFreq:    1MHz      ## Start frequency
+stopFreq:     300MHz    ## Stop frequency, [300MHz] max
+numOfPoints:  801       ## Sweep points, up to [801]
+sweepType:    Log       ## Sweep type: [Log] or [Linear]
+inputMode:    AR        ## Input of network analyzer ([AR]->A/R, [BR]->B/R)
+ifBandwidth:  30kHz     ## IF bandwidth, N*10*1Hz and N*10*3Hz only
+                        ## (i.e. [10kHz], [30kHz], [100kHz],...)
+
+# Analyzer Settings
+dataMode:     dBDeg     ## Data format, [dBDeg], [MagDeg] or [ReIm]
+excAmp:       -10       ## Excitation amplitude (in dBm)
+averages:     5         ## Number of averages
+attenuation:  auto      ## dB of input attenuation for each channel
+                        ## e.g. [20] or [auto] (Optional, default 20 for all)
+# One can set attenuation to different Values
+# Following if provided would override common attenuation set above.
+# attenuationR: 30      ## dB of input attenuation for R in multiples of 10.
+# attenuationA: 20      ## dB of input attenuation for A in multiples of 10.
+# attenuationB: 0       ## dB of input attenuation for B in multiples of 10.

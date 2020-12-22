@@ -1,0 +1,31 @@
+# Analyzer Details
+deviceName:   AG4395A
+ipAddress:    vanna     ## IP or hostname of GPIB Device
+gpibAddress:  10        ## Port of GPIB device, 10 is default
+
+# Output Parameters
+saveDir:      ./        ## Path where output is saved, use [./] for current dir
+nameRoot:     SPAG4395A ## Filename root for output files
+plotResult:   True      ## Whether to plot measured data when finished [True/False]
+plotRefs:     False     ## Whether to plot references with same nameRoot [True/False]
+refDir:       ./        ## Where the reference trace files are stored
+plotScales:   Log,Log   ## Scaling of x and y axes, respectively. [Linear,Log],[Log,Log], etc.
+saveFig:      False     ## If plotResult is true, saves a pdf with same filename [True/False]
+plotTitle:    AG4395A Spectrum Measurement
+
+# Measurement Parameters
+measType:     Spectrum
+startFreq:    100Hz     ## Start frequency
+stopFreq:     1MHz      ## Stop frequency, 300MHz max
+specType:     Noise     ## [Noise] (i.e. PSD units) or [Spectrum] (power units)
+dualChannel:  Single    ## [ Single ]/[ Dual ]
+channels:     A         ## [R], [A], [B] for single channel. [RA],[AB], etc. for dual
+averages:     5         ## Number of averages
+bwSpanRatio:  1.0       ## Set resolution bandwidth / span ratio, in percent. [0.01] to [10]
+attenuation:  0         ## dB of input attenuation for each channel
+                        ## e.g. [20] or [auto] (Optional, default 20 for all)
+# One can set attenuation to different Values
+# Following if provided would override common attenuation set above.
+# attenuationR: 30      ## dB of input attenuation for R in multiples of 10.
+# attenuationA: 20      ## dB of input attenuation for A in multiples of 10.
+# attenuationB: 0       ## dB of input attenuation for B in multiples of 10.

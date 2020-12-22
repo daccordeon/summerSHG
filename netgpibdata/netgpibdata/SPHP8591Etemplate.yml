@@ -1,0 +1,23 @@
+# Analyzer Details
+deviceName:   HP8591E 
+ipAddress:    10.0.1.63    ## IP or hostname of GPIB Device
+gpibAddress:  10            ## Port of GPIB device, 10 is default 
+
+# Output Parameters
+saveDir:      ~/Git/cit_ctnlab/ctn_labdata/data/20171031_HP_GPIB_Test/
+nameRoot:     Test_Spectrum
+plotResult:   False          ## Whether to plot measured data when finished [True/False]
+plotRefs:     False         ## Whether to plot references with same nameRoot [True/False]
+refDir:       ./            ## Where the reference trace files are stored
+plotScales:   Linear,Linear ## Scaling of x and y axes, respectively. [Linear,Log],[Log,Log], etc.
+saveFig:      False         ## If plotResult is true, saves a pdf with same filename [True/False]
+plotTitle:    HP8591E Spectrum Measurement
+
+# Measurement Parameters
+dataMode:     dbm           ## Measurements units: [dbm, dbmv, dbuv, v, w]
+startFreq:    0Hz           ## Start frequency
+stopFreq:     250MHz        ## Stop frequency, 1.8GHz max
+attenuation:  auto          ## dB of input attenuation, i.e. [40], or [auto]
+averages:     1            ## Number of averages, [1] for no averaging
+resBW:        1MHz          ## Resoluation bandwidth, N*10*1Hz and N*10*3Hz only 
+                            ## (i.e. [10kHz], [30kHz], [100kHz],...), or [auto]
