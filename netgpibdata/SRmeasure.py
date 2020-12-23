@@ -59,7 +59,7 @@ def specPlot(dataArray, nDisp, params, legLabel, axlist):
         axlist.set_xlabel('Freq. (Hz)')
         axlist.set_ylabel('Magnitude (' + params['dataMode'] + ')')
         axlist.set_yscale('log')
-        axlist.set_title(params['plotTitle'] + ' - '
+        axlist.set_title(plotTitle + ' - '
                          + time.strftime('%b %d %Y - %H:%M:%S',
                                          time.localtime()))
         axlist.axis('tight')

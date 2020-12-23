@@ -1,6 +1,10 @@
+# ignore python checkpoints
 .ipynb_checkpoints
+*.pyc
+# ignore plots as they are too large
 *.pdf
 *.png
 *.jpg
 *.jpeg
-
+# data extracted from the SR785 is saved as tsv in txt
+*.txt
