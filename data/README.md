@@ -22,4 +22,22 @@ jitter+dark noise
 - SR785_23-12-2020_113923.txt, freq-span = 1.6kHz
 - SR785_23-12-2020_114113.txt, freq-span = 100Hz
 
+Bode amplitude and phase for open loop gain
+- SR785_05-01-2021_120430.txt
+
+Out-of-loop XDIFF sensor, dark noise
+SR785_06-01-2021_(...).txt
+- 112751, freq-span = 102.4kHz
+- 112851, freq-span = 12.8kHz
+- 113003, freq-span = 1.6kHz
+- 113244, freq-span = 100Hz
+
+Out-of-loop XDIFF sensor, residual error
+SR785_06-01-2021_(...).txt
+- 114129, freq-span = 102.4kHz
+- 114229, freq-span = 12.8kHz
+- 114325, freq-span = 1.6kHz
+- 114550, freq-span = 100Hz
+
+
 ---
