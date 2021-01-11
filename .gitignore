@@ -8,3 +8,6 @@
 *.jpeg
 # data extracted from the SR785 is saved as tsv in txt
 *.txt
+# data from the oscilloscope is saved as csv
+*.csv
+
