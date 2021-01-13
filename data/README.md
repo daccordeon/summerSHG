@@ -40,4 +40,20 @@ SR785_06-01-2021_(...).txt
 - 114550, freq-span = 100Hz
 
 
+{weird data
+Dark noise: TL YDIFF and PDH, freq-span = 100 Hz
+SR785_13-01-2021_114258.txt
+
+TL'd, out-of-loop PDH sensor, residual error for YDIFF and PDH error signal, freq-span = 100 Hz
+- SR785_13-01-2021_114612, gain on scope = 
+}
+
+Out-of-loop PDH, TL YDIFF and PDH dark noise
+- SR785_13-01-2021_121202, freq-span = 102.4kHz
+- SR785_13-01-2021_121105, freq-span = 12.8kHz
+- SR785_13-01-2021_121019, freq-span = 1.6kHz
+- SR785_13-01-2021_120840, freq-span = 100Hz
+
+
+
 ---
