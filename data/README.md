@@ -54,6 +54,20 @@ Out-of-loop PDH, TL YDIFF and PDH dark noise
 - SR785_13-01-2021_121019, freq-span = 1.6kHz
 - SR785_13-01-2021_120840, freq-span = 100Hz
 
+Out-of-loop PDH (new mixer), TL YDIFF and PDH dark noise
+- SR785_14-01-2021_104438, freq-span = 102.4kHz
+- SR785_14-01-2021_104344, freq-span = 12.8kHz
+- SR785_14-01-2021_104251, freq-span = 1.6kHz
+- SR785_14-01-2021_104102, freq-span = 100Hz
+
+TL'd, TL and PDH (new mixer) residual error signals, different gains
+- SR785_14-01-2021_110554, gain = 58.7
+- SR785_14-01-2021_111835, gain = 11.0
+- SR785_14-01-2021_112526, gain = 22.1
+- SR785_14-01-2021_113243, gain = 38.9 
+- SR785_14-01-2021_113707, gain = 59.7
+- SR785_14-01-2021_114336, gain = 2.58
+
 
 
 ---
