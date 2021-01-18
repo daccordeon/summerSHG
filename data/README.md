@@ -68,6 +68,11 @@ TL'd, TL and PDH (new mixer) residual error signals, different gains
 - SR785_14-01-2021_113707, gain = 59.7
 - SR785_14-01-2021_114336, gain = 2.58
 
+TL and PDH, for comparing noise floors
+- SR785_18-01-2021_133426, dark noise
+- SR785_18-01-2021_134107, jitter noise
+
+
 
 
 ---
