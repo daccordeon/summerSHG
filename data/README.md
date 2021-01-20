@@ -72,6 +72,14 @@ TL and PDH, for comparing noise floors
 - SR785_18-01-2021_133426, dark noise
 - SR785_18-01-2021_134107, jitter noise
 
+Re-doing gain measurements
+- SR785_20-01-2021_103109, jitter noise
+- SR785_20-01-2021_104718, dark noise
+- 2021-01-20_scope_0, scope for jitter noise DC
+- 2021-01-20_scope_1, scope for TL slope (no PDH slope) and DC on resonance, use scope_2 below
+- 2021-01-20_scope_2, scope for TL and PDH slopes and DC on resonance
+- SR785_20-01-2021_110840, residual error at high gain, gain = 67.1
+- SR785_20-01-2021_111444, residual error at low gain, gain = 2.67
 
 
 
