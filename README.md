@@ -1,8 +1,8 @@
 # summerSHG
 ## README.md
-*Characterisation of and working with the new second-harmonic generator (SHG)*
+*Originally was planned to be a characterisation of the new second-harmonic generator (SHG), however, instead is a characterisation of the tilt lock (TL) control system for the OPO cavity length.*
 
-James Gardner, December 2020
+James Gardner, January 2021
 
 Current build found [here.](https://github.com/daccordeon/summerSHG)
 
@@ -21,7 +21,7 @@ file structure
 ├── README.md
 ├── LICENSE
 ├── data
-│	├── README.md
+│   ├── README.md
 │   └── ...
 ├── netgpibdata
 │   ├── README.md

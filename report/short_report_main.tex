@@ -1,4 +1,6 @@
 % summerSHG - short report
+% detailing the broad strokes of what I did this Summer, methodology and timeline
+
 \documentclass[aps,pra,superscriptaddress,reprint,nofootinbib]{revtex4-1}
 % \documentclass[prb,reprint,nofootinbib]{revtex4-1} 
 % \documentclass[pra,superscriptaddress,reprint,nofootinbib]{revtex4-1}
@@ -22,6 +24,7 @@
 % \usepackage{subfig}
 % \usepackage[style=base]{caption}
 \usepackage[caption=false]{subfig}
+\usepackage{lmodern}
 
 \usepackage{silence}
 \WarningFilter{revtex4-1}{Repair the float}
@@ -34,12 +37,12 @@
 % \newcommand{\ip}[2]{\langle #1,#2 \rangle}
 % \newcommand{\expect}[1]{\langle #1 \rangle}
 
-% \newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\code}[1]{\texttt{#1}}
 % \newcommand{\jam}[1]{\textcolor{magenta}{\textbf{#1}}}
 
 
 \begin{document}
-\title{Tilt locking the OPO}
+\title{Tilt locking the OPO - Short report (1-2 pgs)}
 
 \author{James W. Gardner}
 \email{u6069809@anu.edu.au}
@@ -56,21 +59,93 @@
 \affiliation{Centre for Gravitational Astrophysics, The Australian National University, Acton, A.C.T., 2601, Australia}
 \affiliation{OzGrav @ ANU, Australian Research Council Centre of Excellence for Gravitational Wave Discovery, Acton, A.C.T., 2601, Australia}
 
+\author{Vaishali B. Adya}
+% \email{vaishali.adya@anu.edu.au}
+\affiliation{Centre for Gravitational Astrophysics, The Australian National University, Acton, A.C.T., 2601, Australia}
+\affiliation{OzGrav @ ANU, Australian Research Council Centre of Excellence for Gravitational Wave Discovery, Acton, A.C.T., 2601, Australia}
+
+\author{Daniel Töyrä}
+% \email{daniel.toyra@anu.edu.au}
+\affiliation{Centre for Gravitational Astrophysics, The Australian National University, Acton, A.C.T., 2601, Australia}
+\affiliation{OzGrav @ ANU, Australian Research Council Centre of Excellence for Gravitational Wave Discovery, Acton, A.C.T., 2601, Australia}
+
+\author{Sheon Chua}
+% \email{vaishali.adya@anu.edu.au}
+\affiliation{Centre for Gravitational Astrophysics, The Australian National University, Acton, A.C.T., 2601, Australia}
+\affiliation{OzGrav @ ANU, Australian Research Council Centre of Excellence for Gravitational Wave Discovery, Acton, A.C.T., 2601, Australia}
+
 \date{\today}
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \begin{abstract}
-% % single paragraph, short sales pitch
-% \end{abstract}
 
 \maketitle
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Introduction}
-\label{sec:introduction}
+\section{Overview}
+% stay brief
+
+This report satisfies the requirements of the Summer Research Internships Conditions of Award. It briefly describes what I (James Gardner under the supervision of those listed above) did this Summer at CGA.
+
+\subsection{Learning outcomes}
+
+Over the course of this internship, I have satisfied the following learning outcomes:
+\begin{enumerate}
+\item (Continuation of previous project) Development of analytics of a non-degenerate squeezer in a cavity 
+\item Understanding of introductory control theory including the concepts of gain, stability, and sensor noise
+\item Understanding of the concept of tilt locking (TL) for suppressing disturbances to the cavity length of the OPO used in the GW laboratory
+\item Development of the experimental skills of optical alignment, optical readout, and data acquisition
+\item Implementation of tilt locking and analysis of noise sources
+\item Characterisation of tilt locking through the use of out-of-loop sensors
+\end{enumerate}
+
+\subsection{Logbook and technical notes}
+
+For technical notes, methodology, and more information see the CGP Logbook~\footnote{\url{http://chimera1.physics.anu.edu.au/wordpress/?tag=tilt-locking}}.
+
+\subsection{Timeline}
+
+This internship started on the 7th of December 2020 and is scheduled to end on the 23rd of February 2021.
+
+\begin{itemize}
+\item During the first two weeks of the internship, I continued some of the work done during my previous project with Vaishali and Daniel. Namely, I continued verifying the non-linear element in Finesse by comparing it to analytics that I derived for a non-degenerately squeezed cavity. These analytics, that I previously derived, had an error in them that took many re-derivations to find (it ended up being a missing square root from converting PSD to ASD).
+At the end of the two weeks I gave a talk to the LIGO IFOSIM group about my work (from the previous project and these two weeks).
+\item During the second week, I also began work in the GW laboratory with Min Jet and managed to tilt lock the cavity by the end of that week. Throughout working with Min Jet, I completed readings to understand tilt locking~\cite{TL:1999} and introductory control theory~\cite{Ward:2010,Bechhoefer:2005,FCS:2000}.
+\item In the short third week (the week of Christmas), I began writing logbook posts while improving the TL YDIFF (horizontal) error signal and characterising the TL residual error signal.
+\item In the first week of January, I found the open and closed loop gains of the TL control system, set up the TL XDIFF (vertical) signal as an out-of-loop sensor, and calibrated the voltage measurements as length noise
+\item In the second week of January, I set up the PDH control system as an out-of-loop sensor to characterise the sensor noise of the TL, compared the dark noise of the two control systems, replaced the PDH mixer to improve its dark noise, and recorded the residual errors for different servo gains.
+\item In the third week of January, I showed that at high gains the jitter sensor noise was limiting the PDH out-of-loop sensor (although it is not entirely conclusive, see the technical notes). Unless changes were made to reduce the jitter noise, this also showed that PDH would be a more effective control system than TL.
+\item And, in the final weeks of January, I wrote up this report and the technical notes for the internship.
+\end{itemize}
 
 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \section{Reading and understanding}
+% % cite readings
+
+% \subsection{Control theory}
+
+% \subsection{Tilt locking (TL)}
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \section{Setting up TL}
+
+
+% \subsection{Experimental skills}
+
+
+% \section{Results - characterisation of TL}
+
+
+% \subsection{PDH out-of-loop sensor}
+% % understanding of PDH and setting up sensor (minimal)
+
+
+% \subsection{Jitter noise}
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \section{Final remarks}
 
 
 
