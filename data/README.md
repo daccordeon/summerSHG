@@ -1,4 +1,6 @@
-# Guide to data files
+# data
+
+This is a guide to each of the data files.
 
 ---
 
@@ -39,13 +41,12 @@ SR785_06-01-2021_(...).txt
 - 114325, freq-span = 1.6kHz
 - 114550, freq-span = 100Hz
 
-
-{weird data
+rejected data{
 Dark noise: TL YDIFF and PDH, freq-span = 100 Hz
 SR785_13-01-2021_114258.txt
 
 TL'd, out-of-loop PDH sensor, residual error for YDIFF and PDH error signal, freq-span = 100 Hz
-- SR785_13-01-2021_114612, gain on scope = 
+- SR785_13-01-2021_114612, gain on scope = ?
 }
 
 Out-of-loop PDH, TL YDIFF and PDH dark noise
@@ -80,7 +81,3 @@ Re-doing gain measurements
 - 2021-01-20_scope_2, scope for TL and PDH slopes and DC on resonance
 - SR785_20-01-2021_110840, residual error at high gain, gain = 67.1
 - SR785_20-01-2021_111444, residual error at low gain, gain = 2.67
-
-
-
----

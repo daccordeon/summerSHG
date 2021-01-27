@@ -1,4 +1,4 @@
 # source
 
-Code (typically in notebooks) to run the analysis
+Code (in Python 3 Jupyter notebooks) to run the analysis.
 

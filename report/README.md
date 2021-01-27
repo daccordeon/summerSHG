@@ -1,1 +1,3 @@
-files for short report (1-2 pgs) and technical notes
+# report
+
+LaTeX files for short report (1-2 pgs) and technical notes.
