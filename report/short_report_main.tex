@@ -81,12 +81,19 @@
 \maketitle
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Overview}
+\section{Preamble}
 % stay brief
 
 This report satisfies the requirements of the Summer Research Internships Conditions of Award. It briefly describes what I (James Gardner under the supervision of those listed above) did this Summer at CGA.
 
-\subsection{Learning outcomes}
+\section{Abstract}
+% include: motivation (simplified and modulation-free control scheme), PDH, results, conclusions
+% what the project is, motivation, what you've did, and what you've concluded/outlook
+
+For delivering optimal power to squeezing experiments down the beamline, we want to keep the OPO on the squeezer table on resonance by controlling the cavity length. We investigated an alternative, tilt locking (TL), to the current control system using the Pound-Drever-Hall (PDH) technique that offers a simpler, modulation-free layout. We successfully implemented TL with PDH as an out-of-loop sensor to characterise the control system. We found that the PDH out-of-loop sensor was limited by the jitter sensor noise~\footnote{This result is not entirely conclusive, see the technical notes.} which limited the length noise of the TL to around 0.1 to 1 $\frac{\mathrm{pm}}{\sqrt{\mathrm{Hz}}}$. Since PDH is not affected by jitter noise and has dark noise at least a factor of two below TL, unless the jitter noise floor is reduced~\footnote{For example, by methods outlined in the technical notes.}, we recommend that the OPO continues to be locked using the PDH system.
+
+
+\section{Learning outcomes}
 
 Throughout this internship, I have satisfied the following learning outcomes:
 \begin{enumerate}
@@ -98,20 +105,24 @@ Throughout this internship, I have satisfied the following learning outcomes:
 \item Characterisation of tilt locking through the use of out-of-loop sensors.
 \end{enumerate}
 
-\subsection{Technical notes, logbook, and code}
 
-For technical notes, our methodology, and more information see the CGP Logbook~\footnote{\url{http://chimera1.physics.anu.edu.au/wordpress/?tag=tilt-locking}}. For the code used and/or written during the internship see the GitHub repository~\footnote{\url{https://github.com/daccordeon/summerSHG}}.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\appendix
+\section{Technical notes, logbook, and code}
 
-\subsection{Timeline}
+For an explanation of tilt locking and a detailed reference of our implementation, results, and conclusions, see the technical notes in the CGP Logbook~\footnote{Technical notes: \url{http://chimera1.physics.anu.edu.au/wordpress/?p=16118}}. For our methodology and experimental progress, see the ``tilt locking'' series in the CGP Logbook~\footnote{Logbook series: \url{http://chimera1.physics.anu.edu.au/wordpress/?tag=tilt-locking}}.
+For the code used and/or written during the internship see the accompanying GitHub repository~\footnote{GitHub repository: \url{https://github.com/daccordeon/summerSHG}}.
+
+\section{Timeline}
 
 This internship started on the 7th of December 2020 and is scheduled to end on the 23rd of February 2021.
 
 \begin{itemize}
-\item During the first two weeks of the internship, I continued some of the work done during my previous project with Vaishali and Daniel. I continued verifying the non-linear element in Finesse by comparing it to analytics that I derived for a non-degenerately squeezed cavity. These analytics, that I previously derived, had an error in them that took many re-derivations to find (it ended up being a missing square root from converting PSD to ASD).
+\item During the first two weeks of the internship, I continued some of the work done during my previous project with Vaishali and Daniel. I continued verifying the non-linear element in Finesse~\cite{finesse} by comparing it to analytics that I derived for a non-degenerately squeezed cavity. These analytics, that I previously derived, had an error in them that took many re-derivations to find (it ended up being a missing square root from converting PSD to ASD).
 At the end of the two weeks, I gave a talk to the LIGO IFOSIM group about my work (from the previous project and these two weeks).
 \item During the second week, I also began work in the GW laboratory with Min Jet and managed to tilt lock the cavity by the end of that week. Throughout working with Min Jet, I completed readings to understand tilt locking~\cite{TL:1999} and introductory control theory~\cite{Ward:2010,Bechhoefer:2005,FCS:2000}.
-\item In the short third week (the week of Christmas Day), I began writing logbook posts while improving the TL YDIFF (horizontal) error signal and characterising the TL residual error signal.
-\item In the first week of January, I found the open and closed-loop gains of the TL control system, set up the TL XDIFF (vertical) signal as an out-of-loop sensor, and calibrated the voltage measurements into length noise using the error signal slopes.
+\item In the short third week (the week of Christmas Day), I began writing logbook posts while improving the TL YDIFF (horizontal) error signal and characterising the TL residual error signal (i.e.\ the residual noise of the TL error signal when lock is acquired).
+\item In the first week of January, I measured the open and closed-loop gains of the TL control system, set up the TL XDIFF (vertical) signal as an out-of-loop sensor, and calibrated the voltage measurements into length noise using the error signal slopes.
 \item In the second week of January, I set up the PDH control system as an out-of-loop sensor to characterise the sensor noise of the TL, compared the dark noise of the two control systems, replaced the PDH mixer to improve its dark noise, and recorded the residual errors for different servo gains.
 \item In the third week of January, I showed that at high gains the jitter sensor noise was limiting the PDH out-of-loop sensor (although this is not entirely conclusive, see the technical notes). Unless changes were made to reduce the jitter noise, this also showed that PDH would be a more effective control system than TL (this is similarly reductionist, see the notes).
 \item And, in the final weeks of January, I wrote up this report and the technical notes for the internship.

@@ -69,9 +69,12 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \begin{abstract}
-% % single paragraph, short sales pitch
-% \end{abstract}
+\begin{abstract}
+% include: motivation (simplified and modulation-free control scheme), PDH, results, conclusions
+% what the project is, motivation, what you've did, and what you've concluded/outlook
+For delivering optimal power to squeezing experiments down the beamline, we want to keep the OPO on the squeezer table on resonance by controlling the cavity length. We investigated an alternative, tilt locking (TL), to the current control system using the Pound-Drever-Hall (PDH) technique that offers a simpler, modulation-free layout. We successfully implemented TL with PDH as an out-of-loop sensor to characterise the control system.
+We found that the PDH out-of-loop sensor was limited by the jitter sensor noise which limited the length noise of the TL to around 0.1 to 1 $\frac{\mathrm{pm}}{\sqrt{\mathrm{Hz}}}$ (although the results are not entirely conclusive). Since PDH is not affected by jitter noise and has dark noise at least a factor of two below TL, unless the jitter noise floor is reduced, we recommend that the OPO continues to be locked using the PDH system.
+\end{abstract}
 
 \maketitle
 
@@ -82,7 +85,7 @@
 \label{sec:preamble}
 
 These notes are written as a technical reference for the CGA squeezer group and assume an appropriate level of familiarity with the squeezer OPO table and any relevant concepts. They are aimed at an audience interested in implementing tilt locking.
-These notes do not give a chronological account of our work nor do they contain everything we attempted. For further information see the accompanying ``tilt locking'' series of posts in the CGP Logbook~\footnote{\url{http://chimera1.physics.anu.edu.au/wordpress/?tag=tilt-locking}} or contact the authors.
+These notes do not give a chronological account of our work nor do they contain everything we attempted. For further information see the accompanying ``tilt locking'' series of posts in the CGP Logbook~\footnote{“tilt locking” logbook series: \url{http://chimera1.physics.anu.edu.au/wordpress/?tag=tilt-locking}} or contact the authors.
 
 This work was done in the Summer of 2020/2021 as part of an internship with CGA.
 
@@ -92,7 +95,7 @@ This Section~\ref{sec:preamble} describes what these notes contain and their pur
 Section~\ref{sec:TL} motivates, explains, and details our implementation of tilt locking (TL).
 Section~\ref{sec:error_signal} gives a guide to improving the error signal of the TL control system.
 Section~\ref{sec:out-of-loop_sensors} motivates and details the out-of-loop sensors that we used to characterise the TL control system.
-Section~\ref{sec:results} contains miscellaneous results that characterise the TL control system and compare its performance to the PDH control system previously implemented.
+Section~\ref{sec:results} contains miscellaneous results that characterise the TL control system and compare its performance to the PDH technique control system previously implemented.
 And Section~\ref{sec:conclusions} draws conclusions about the efficacy of the TL control system.
 
 
@@ -107,7 +110,7 @@ It should be noted that what we did with TL was not novel. Motivated by the reas
 For squeezing experiments down the beamline, we want to keep the OPO on resonance to maximise the laser power inside the cavity. Whether the cavity is on resonance (considering plane waves for the moment) depends on the laser frequency and the cavity tuning. Here, we are trying to lock the cavity length as to stay on resonance for the fundamental spatial mode~\footnote{Note that we will refer to cavity tuning interchangeably as cavity length throughout these notes which may be confusing if one insists that length be restricted to integer multiples of the carrier wavelength.}.
 
 
-The OPO table already had a PDH control system in place to perform this function. One purpose of this work was to compare that existing system (PDH) to an alternative control system (tilt locking, see below). 
+The OPO table already had a Pound-Drever-Hall (PDH) technique based control system in place to perform this function. One purpose of this work was to compare that existing system, PDH, to an alternative control system, tilt locking (TL), since the alternative had a simpler, modulation-free layout.
 
 
 \subsection{Optics theory for TL}
@@ -115,7 +118,7 @@ The OPO table already had a PDH control system in place to perform this function
 This understanding and implementation are based on the work in Ref.~\cite{TL:1999}, see that reference for further information.
 
 
-Classically, the laser light incident on the cavity can be decomposed into the Hermite-Gauss (HG) rectangular modes. How much the cavity is detuned determines how it ``sees'' these modes. Critically, the different spatial structure of these modes makes each acquire a different Gouy phase upon circulation. This implies a different resonance condition (length) for each mode. As such, at different detunings, the cavity will ``see'' different modes as resonant.
+Classically, the laser light incident on the cavity can be decomposed into the Hermite-Gauss (HG) rectangular modes. How much the cavity is detuned determines how it ``sees'' these modes. Critically, the different spatial structure of these modes makes each acquire a different Gouy phase upon circulation. This implies that higher-order modes will have different resonant frequencies and conditions (e.g. cavity length). As such, at different detunings, the cavity will ``see'' different modes as resonant.
 
 
 We restrict our attention to the fundamental (a single blob) and the first-order (two blobs side-by-side either vertically or horizontally along the two transverse x and y axes, respectively) HG modes. We placed a quadrature photodiode (QPD) to detect the light reflected off of the cavity such that the quadrature axes were (roughly) aligned with the horizontal and vertical transverse axes of the beam. The QPD outputs SUM, YDIFF, and XDIFF channels for the total intensity and the difference in intensity on the horizontal and vertical halves, respectively. If either mode is incident on the QPD alone, then the DIFF signals are zero (supposing that the beam is properly aligned). But if the fundamental and a first-order mode are both present at the QPD, then their interference can produce a non-zero DIFF signal for the relevant axis.
@@ -138,7 +141,7 @@ The TL path consists of a 50~mm lens (placed far back from the QPD to increase t
 
 For electronics, we used the existing servo and HV amp eurocards from the PDH control system to drive the PZT. For TL, the YDIFF signal was the positive input into the servo, its positive output was fed to the HV amp, and the amp output was sent to the PZT.
 
-Throughout we used a DSO-X 3034A oscilloscope for monitoring and an SR785 spectrum analyser for LF (below 100~kHz) measurements. All of the Python 3 Jupyter notebooks~\cite{python,ipython,jupyter} we used to plot and analyse the data are collected and commented in a GitHub repository~\footnote{\url{https://github.com/daccordeon/summerSHG}}.
+Throughout we used a DSO-X 3034A oscilloscope for monitoring and an SR785 spectrum analyser for LF (below 100~kHz) measurements. All of the Python 3 Jupyter notebooks~\cite{python,ipython,jupyter} we used to plot and analyse the data are collected and commented in a GitHub repository~\footnote{Github repository: \url{https://github.com/daccordeon/summerSHG}}.
 
 
 \subsection{Achieving lock}
@@ -146,7 +149,7 @@ Throughout we used a DSO-X 3034A oscilloscope for monitoring and an SR785 spectr
 To achieve lock the system must be manually guided to the linear regime of the YDIFF error signal by use of the DC offset knob on the servo panel (so-called “manual lock acquisition”). Monitoring the QPD SUM and YDIFF signals on the oscilloscope, the user must slowly change the DC offset until the QPD SUM dips down and the error signal nears zero (signs of nearing a resonance). Then, quickly, the user must switch on the proportional (labelled as “signal”) and integral control. If the lock is successful, then the YDIFF error signal should remain at zero and the SUM should stay down. One can then create a disturbance (e.g.\ by clapping, stomping, or talking near the optics table) and see that the system maintain lock. 
 
 
-Likely, the lock will not be initially achieved. The YDIFF error signal may need to be improved by the methods detailed in Sec.~\ref{sec:error_signal}, below. Alternatively, the servo gain may be too low and should be increased. If failure to lock is due to the lock finding the high-order resonance instead of the fundamental, then the user must reset and try again. If the system appears to be ringing while in lock or is losing lock due to ringing, then the servo gain should be turned down.
+Likely, the lock will not be initially achieved. The YDIFF error signal may need to be improved by the methods detailed in Sec.~\ref{sec:error_signal}, below. Alternatively, the servo gain may be too low and should be increased. If failure to lock is due to the lock finding the high-order resonance instead of the fundamental, then the user must reset, change the sign of the feedback, and try again. If the system appears to be ringing while in lock or is losing lock due to ringing, then the servo gain should be turned down.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -171,31 +174,33 @@ We also checked the SR785’s electronic dark noise floor and found it at least 
 \label{sec:misalignment}
 
 \begin{figure}
-\includegraphics[width=0.4\textwidth,angle=-180]{figures/20201222_114552_error_sig.jpg}
+\includegraphics[width=0.45\textwidth,angle=-180]{figures/20201222_114552_error_sig.jpg}
 \caption{Oscilloscope measurement from 2020-12-22. The TL YDIFF error signal (red), the QPD SUM (yellow), and the ramp scan (blue).}
 \label{fig:TL_error_sig_example}
 \end{figure}
 
-The TL YDIFF error signal can be seen by scanning the cavity using a 6~Hz, -1~V to 4~V ramp. An example is shown in Fig.~\ref{fig:TL_error_sig_example}. The best method we found was to introduce a horizontal misalignment at the last steering mirror into the cavity, shown in Fig.~\ref{fig:TL_layout}. This moved the zero-crossing of the error signal closer to the fundamental resonance and kept a large linear region on either side. However, the misalignment should not be so great as to significantly increase the first-order mode resonance peak in the QPD SUM channel (introducing misalignment into the cavity makes the cavity ``see'' more of the higher-order mode). If over-done, then the control system is more likely to lock to the wrong resonance peak.
+The TL YDIFF error signal can be seen by scanning the cavity using a 6~Hz, -1~V to 4~V ramp. An example is shown in Fig.~\ref{fig:TL_error_sig_example}. The best method we found was to introduce a horizontal misalignment at the last steering mirror into the cavity, shown in Fig.~\ref{fig:TL_layout}. This moved the zero-crossing of the error signal closer to the fundamental resonance and kept a large linear region on either side. However, the misalignment should not be so great as to significantly increase the first-order mode resonance peak in the QPD SUM channel (introducing misalignment into the cavity makes the cavity ``see'' more of the higher-order mode).
+Increasing the first-order mode peak means that the cavity is dumping power from the fundamental into that mode, which goes against our motivation of wanting to maximise the fundamental mode power in the cavity.
+% If over-done, then the control system is more likely to lock to the wrong resonance peak, but this can be overcome if the correct sign for feedback is known (and so, locking to the wrong peak is often a non-issue). Still, misalignment should not be introduced any more than is necessary.
 
-We found that introducing a small misalignment was all we needed to improve the slope around the zero-crossing (the error signal should be monitored as it changes shape).
+We found that introducing a small misalignment was all we needed to improve the slope around the zero-crossing (the error signal should be monitored as it changes shape). Considering Fig.~\ref{fig:TL_error_sig_example}, a good error signal trace (the YDIFF channel, shown in red) can be achieved with only the slightest bump at the higher-order mode (the QPD SUM channel, shown in yellow).
 
 \subsection{Putting the lid on the optical table}
 
 \begin{figure}
 \includegraphics[width=0.45\textwidth]{figures/20201221_114754_lid_on.jpg}
-\caption{SR785 measurement from 2020-12-21 of YDIFF and XDIFF dark noise with the optical table lid on and off.}
-\label{fig:dark_noise_lid_on}
+\caption{SR785 measurement from 2020-12-21 of YDIFF and XDIFF jitter noise with the optical table lid on and off.}
+\label{fig:jitter_noise_lid_on}
 \end{figure}
 
-To improve the dark noise, we put the lid on the optical table to reduce the amount of environmental light incident on the QPD. This improved the dark noise at LF by at least two orders, as seen in Fig.~\ref{fig:dark_noise_lid_on}. Therefore, we put the lid on the optical table for all other measurements.
+To improve the TL noise, we put the lid on the optical table to reduce the amount of environmental light incident on the QPD and the coupling of environmental sound and air currents into the system (sources of jitter noise). This improved the noise at LF by at least two orders, as seen in Fig.~\ref{fig:jitter_noise_lid_on}. Therefore, we put the lid on the optical table for all other measurements.
 
 \subsection{Increasing the spot size}
 \label{sec:spot_size}
 
 We also tried increasing the beam spot size incident on the QPD to increase the sensitivity of the TL system. We thought that a larger spot size would lie across multiple quadrants and so detect changes that a beam restricted to one quadrant could not. We did this by including a converging lens before the QPD but beyond its focal length so that the beam was diverging for long enough to increase the spot size. Note that we included the lens before the TL steering mirror for ease of alignment since the position of the QPD on the stand meant that, otherwise, we would have to steer through the edge of the lens, which is not ideal.
 
-Including the lens increased the slope of the error signal and so the sensitivity by around a factor of two, comparing the traces in the relevant logbook post~\footnote{\url{http://chimera1.physics.anu.edu.au/wordpress/?p=15993}}. However, the misalignment was more effective at improving the error signal as it also moved the zero-crossing (it changes the shape of the error signal).
+Including the lens increased the slope of the error signal and so the sensitivity by around a factor of two, comparing the traces in the relevant logbook post~\footnote{Spot size logbook post: \url{http://chimera1.physics.anu.edu.au/wordpress/?p=15993}}. However, the misalignment was more effective at improving the error signal as it also moved the zero-crossing (it changes the shape of the error signal).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -207,7 +212,7 @@ To characterise the TL control system, we introduced out-of-loop sensors to moni
 \subsection{Control theory of sensor noise}
 
 \begin{figure}
-	\includegraphics[height=0.4\textwidth,angle=-90]{figures/FCS_diagram.pdf}
+	\includegraphics[height=0.45\textwidth,angle=-90]{figures/FCS_diagram.pdf}
 	\caption{Block diagram for a SISO feedback control system with an out-of-loop sensor, $B_{\mathrm{out}}$. $B_{\mathrm{in}}$ is the in-loop sensor, $G$ is the compensator, $H$ is the driver, $A$ is the actuator, $P$ is the plant. The disturbance upon the free-running variable is $X_d$, the sensor noises are $N_{B_{i,o}}$, and the compensator noise is $N_G$.}
 	\label{fig:block_FCS_diagram}
 \end{figure}
@@ -222,19 +227,19 @@ Consider a simple SISO (single-input single-output) feedback loop, shown in Fig.
 The free-running disturbance is suppressed at the control output (the signal input to the sensor) by the open-loop gain. If the gain is high enough such that the noise at the sensor (which does not change with gain) becomes dominant, then the sensor will start (unknowingly) treating it as a true disturbance to the system and will cause the plant to act on the system as to counter it, thereby introducing so-called ``sensor noise'' into the system that the control loop is meant to be quieting. Further increasing the gain only injects more of this noise into the system. Sensor noise represents a limit to the efficacy of a control system since the sensor cannot distinguish its noise from that in the physical system.
 
 
-The tricky part of sensor noise, however, is that at the sensor output it is suppressed by the open-loop gain. This means that it will be suppressed in any data using the sensor itself. To solve this and observe the sensor noise, a second, out-of-loop, sensor is added to complement the existing in-loop sensor. This out-of-loop sensor is only used for monitoring the system and its error signal is not fed back to any control system. Supposing that the out-of-loop sensor’s noise is not louder than the in-loop sensor’s noise, then in regions of high gain where sensor noise is injected into the system the error signal from the out-of-loop sensor should hit a noise floor that cannot be passed by increasing gain. Meanwhile, the in-loop sensor would erroneously show better and better error signals.
+The tricky part of sensor noise, however, is that at the sensor output it is suppressed by the open-loop gain. This means that it will be suppressed in any data using the sensor itself. To solve this and observe the sensor noise, a second, out-of-loop, sensor is added to complement the existing in-loop sensor. This out-of-loop sensor is only used for monitoring the system and its error signal is not fed back to any control system. Supposing that the out-of-loop sensor’s noise is not louder than the in-loop sensor’s noise, then in regions of high gain where sensor noise is injected into the system the error signal from the out-of-loop sensor should hit a noise floor that cannot be passed by increasing gain. Meanwhile, the in-loop sensor would erroneously continue to display improvement as it kept suppressing its own noise at the cost of the system.
 
 
 \subsection{XDIFF}
 
 \begin{figure*}
-\includegraphics[width=0.7\textwidth]{figures/TL_residual_error_full_spectrum_comparison_no_bands.pdf}
+\includegraphics[width=0.8\textwidth]{figures/TL_residual_error_full_spectrum_comparison_no_bands.pdf}
 \caption{SR785 measurements from 2020-12-23 of the TL YDIFF residual error (blue) compared against dark noise (orange) and jitter noise (green).}
 \label{fig:TL_residual_error_full_spectrum_comparison_no_bands}
 \end{figure*}
 
 \begin{figure*}
-\includegraphics[width=0.7\textwidth]{figures/TL_XDIFF_and_YDIFF_spectra_comparison.pdf}
+\includegraphics[width=0.8\textwidth]{figures/TL_XDIFF_and_YDIFF_spectra_comparison.pdf}
 \caption{SR785 measurements from 2021-01-06 comparing the XDIFF and YDIFF residual errors against their dark noises while TL’d against YDIFF. We see that YDIFF goes below dark noise below 10~Hz but that XDIFF remains above dark noise throughout. The residual errors are normalised to the gradient at the zero-crossing in the scanned cavity error signal, i.e.\ normalised to the sensitivity of each sensor, but the dark noise measurements are not normalised.}
 \label{fig:TL_XDIFF_and_YDIFF_spectra_comparison}
 \end{figure*}
@@ -252,9 +257,10 @@ In retrospect, the XDIFF signal was likely at a noise floor determined by its ve
 \label{sec:PDH_out-of-loop}
 
 \begin{figure*}
-    \subfloat[\centering]{{	\includegraphics[width=0.5\textwidth]{figures/TL_dark_noise_comparison_to_PDH.pdf}}}%
-    \subfloat[\centering ]{{\includegraphics[width=0.5\textwidth]{figures/TL_dark_noise_comparison_to_PDH_new_mixer.pdf}}}%
-	\caption{SR785 measurements from 2021-01-13/14 of the TL and PDH dark noise. Showing PDH dark noise from the old eurocard mixer (panel a, left) and from the new mixer (panel b, right). The new mixer flattens the PDH dark noise and brings it under TL at LF.}
+    % \subfloat[\centering]{{\includegraphics[width=0.5\textwidth]{figures/TL_dark_noise_comparison_to_PDH.pdf}}}%
+    % \subfloat[\centering ]{{\includegraphics[width=0.5\textwidth]{figures/TL_dark_noise_comparison_to_PDH_new_mixer.pdf}}}%
+    \includegraphics[width=1\textwidth]{figures/TL_dark_noise_comparison_to_PDH_two_panels.pdf}
+	\caption{SR785 measurements from 2021-01-13/14 of the TL and PDH dark noise. Showing PDH dark noise from the old eurocard mixer (left panel) and from the new mixer (right panel). The new mixer flattens the PDH dark noise and brings it under TL at LF.}
 	\label{fig:TL_dark_noise_comparison_to_PDH}
 \end{figure*}
 
@@ -280,7 +286,7 @@ In this section, we characterise the TL control system and compare its performan
 	\label{fig:TL_OLG_and_CLG}
 \end{figure*}
 
-To characterise the TL, we measured the open-loop gain (OLG) of the system. This is detailed in the relevant post in the CGP logbook~\footnote{\url{http://chimera1.physics.anu.edu.au/wordpress/?p=16025}}. A swept sine measurement from the SR785 was injected by an adder board after the in-loop sensor and the ratio of the signals at two test-points, before and after the injection of the external signal, was measured and is shown in Fig.~\ref{fig:TL_OLG_and_CLG}. We also calculated the closed-loop gain as $\frac{1}{1+\mathrm{OLG}}$ since the control system is operating in a disturbance-suppression mode~\cite{FCS:2000}.
+To characterise the TL, we measured the open-loop gain (OLG) of the system. This is detailed in the relevant post in the CGP logbook~\footnote{Open-loop gain logbook post: \url{http://chimera1.physics.anu.edu.au/wordpress/?p=16025}}. A swept sine measurement from the SR785 was injected by an adder board after the in-loop sensor and the ratio of the signals at two test-points, before and after the injection of the external signal, was measured and is shown in Fig.~\ref{fig:TL_OLG_and_CLG}. We also calculated the closed-loop gain as $\frac{1}{1+\mathrm{OLG}}$ since the control system is operating in a disturbance-suppression mode~\cite{FCS:2000}.
 
 We measured the unity-gain frequency (UGF) to be around 8-12~kHz and can see that the system is stable, given the Nyquist criterion, with high phase margin but low gain margin. Below the UGF, the system falls as 20~dB over one order of magnitude in frequency and the phase sits around $90^\circ$ away from $-180^\circ$, indicating a 1/f gain at LF, consistent with the Bode gain-phase relation. Above the UGF, the system shows resonances but is made stable by the 10~Hz low-pass filter in the HV amp which also allows for a higher UGF, see the explanation in the logbook post.
 
@@ -316,8 +322,10 @@ With the TL at high gain such that its residual error was below its dark and jit
 \subsubsection{Complications}
 
 \begin{figure*}
-	\includegraphics[width=0.8\textwidth]{figures/TL_and_PDH_TLd_residual_errors_two_gains.pdf}
-	\caption{SR785 LF measurements from 2021-01-20 of TL and PDH dark and jitter noise projected into length noise. Compared against high and low gain residual errors. Note that this data was taken after that in shown in Fig.~\ref{fig:TL_length_noise_compared_to_PDH_length_noise_floor}.}
+	\includegraphics[width=1\textwidth]{figures/TL_and_PDH_TLd_residual_errors_two_gains_two_panels.pdf}
+	\caption{SR785 LF measurements from 2021-01-20 of TL (left panel) and PDH (right panel) dark and jitter noise projected into length noise. Compared against high and low gain residual errors which are corrected for their DC voltage. The TL jitter sensor noise is projected onto the PDH measurements (purple dashed trace in the right panel) to compare to the PDH high gain residual error (green solid trace in the right panel). Note that, unlike the measurements in Fig.~\ref{fig:TL_length_noise_compared_to_PDH_length_noise_floor}, all of the measurements shown here were taken on the same day.}
+	% \includegraphics[width=0.8\textwidth]{figures/TL_and_PDH_TLd_residual_errors_two_gains.pdf}
+	% \caption{SR785 LF measurements from 2021-01-20 of TL and PDH dark and jitter noise projected into length noise. Compared against high and low gain residual errors which are corrected for their DC voltage. Note that this data was taken after that in shown in Fig.~\ref{fig:TL_length_noise_compared_to_PDH_length_noise_floor}. The relevant comparisons are between the two low gain residual errors (shown in brown and grey, respectively), between the PDH high gain residual error and the projected jitter noise (shown in purple and green, respectively), and between the TL high gain residual error and its dark noise (shown in pink and blue, respectively).}
 	\label{fig:TL_and_PDH_TLd_residual_errors_two_gains}
 \end{figure*}
 
@@ -330,22 +338,23 @@ The reason for the decrease in jitter noise compared to the above measurements (
 \section{Conclusions}
 \label{sec:conclusions}
 
-We have successfully implemented TL with minimal set-up and have characterised it as a control system by measuring its open-loop gain and by using PDH as an out-of-loop sensor. From the results in Sec.~\ref{sec:jitter_sensor_noise}, we see that jitter sensor noise is limiting the control system (although some complications remain unsolved). We also know that jitter noise and TL dark noise are above, sometimes by an order or more, the PDH dark noise (comparing all as length noise).
-Therefore, if jitter noise is not reduced, then TL is stuck at a noise floor at least an order above PDH dark noise at LF, making it an inferior control system in its ability to quiet the cavity~\footnote{We have ignored noise sources for PDH other than its dark noise, in reality, PDH may not reach its dark noise.}~\footnote{This is a reductionist view of comparing the two systems, really, we should compare them across all frequencies below their UGF’s and also consider their stability, etc. Ref.~\cite{FCS:2000} gives a guide to designing control systems and how to decide on what sensors to use.}.
+We have successfully implemented TL with minimal set-up and have characterised it as a control system by measuring its open-loop gain and by using PDH as an out-of-loop sensor. From the results in Sec.~\ref{sec:jitter_sensor_noise}, we see that jitter sensor noise is limiting the control system to length noises around 0.1 to 1 $\frac{\mathrm{pm}}{\sqrt{\mathrm{Hz}}}$ (although some complications remain unsolved). We also know that jitter noise and TL dark noise are above, sometimes by an order or more, the PDH dark noise (comparing all as length noise).
+Therefore, if jitter noise is not reduced (e.g.\ by the methods suggested below), then TL is limited to a noise floor at least an order above PDH dark noise at LF, making it an inferior control system in its ability to quiet the cavity~\footnote{We have ignored noise sources for PDH other than its dark noise, in reality, PDH may not reach its dark noise.}~\footnote{This is a reductionist view of comparing the two systems, really, we should compare them across all frequencies below their UGF’s and also consider their stability, etc. Ref.~\cite{FCS:2000} gives a guide to designing control systems and how to decide on what sensors to use.}. As such, we recommend that the OPO continues to be locked with the PDH control system.
 
 \subsection{Advice to those in the future}
+\label{sec:future_work}
 
 If TL was to be used in the future, then the following problems should be considered: 
 \begin{enumerate}
 \item How should jitter noise be reduced?
 	\begin{enumerate}
-	\item How can the beam path be kept as short as possible (spatial misalignment grows over distance)?
+	\item Can the beam path be kept as short as possible (since spatial misalignment grows over distance)?
 	\item Can the system be better seismically isolated (seismic noise)?
-	\item Can the system be cooled (thermal noise)?
 	\item Can the system be placed in a vacuum (gas noise)?
 	\item Why is the jitter noise time-varying?
+	% \item Realistically, we are not limited by thermal noise, but if we were, then can the system be cooled?
 	\end{enumerate}
-\item Are a UGF of around 8-12~kHz and a maximum servo gain of around 67 sufficient to quiet the OPO (i.e.\ is length noise on the order of pm sufficiently small)?
+\item Are a UGF of around 8-12~kHz and a maximum servo gain of around 67 sufficient to quiet the OPO (i.e.\ is length noise on the order of 0.1 to 1 $\frac{\mathrm{pm}}{\sqrt{\mathrm{Hz}}}$ sufficiently small)?
 \item Is TL stable enough at those high gains (recall that the phase margin is large but the gain margin is small)?
 \item Is the PZT actuator range sufficiently large (a problem common to the current implementations of PDH and TL)?
 	\begin{enumerate}
